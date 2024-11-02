@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "30 Day Map Challenge 2024",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/day1/index.html",
+    "href": "posts/day1/index.html",
+    "title": "Day 1: Points",
+    "section": "",
+    "text": "ReuseCC BY 4.0CitationBibTeX citation:@online{durrani2024,\n  author = {Durrani, Umair},\n  title = {Day 1: {Points}},\n  date = {2024-11-01},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nDurrani, Umair. 2024. “Day 1: Points.” November 1, 2024."
+  },
+  {
+    "objectID": "posts/day1/day1.html",
+    "href": "posts/day1/day1.html",
+    "title": "Day 1: Points",
+    "section": "",
+    "text": "I used the crashapi package to gather fatal vehicle crashes for New York city for 2019-2020. Before looking at the maps, recall that stay-at-home orders were given in 2020 due to COVID-19. Therefore, the number of fatal crashes were expected to decrease in 2020 compared to 2019.\n\n# devtools::install_github(\"elipousson/crashapi\")\nlibrary(crashapi)\nlibrary(tidyverse)\nlibrary(janitor)\nlibrary(tigris)\nlibrary(patchwork)\n\nThere are 5 counties in New York City, so I made a function to download county data using the crashapi package:\n\nget_ny_county_data &lt;- function(county){\n  crashapi::get_fars(\n    year = c(2019, 2020),\n    state = \"New York\",\n    county = county,\n    details = FALSE,\n    geometry = TRUE\n  )\n}\n\nny_counties &lt;-  c(\"New York County\", \"Kings County\", \n    \"Queens County\", \"Bronx County\",\n    \"Richmond County\")\n\nny_crashes &lt;- purrr::map(\n  ny_counties,\n  ~ get_ny_county_data(.x)\n) \n\nny_crashes &lt;- purrr::set_names(ny_crashes, ny_counties) \n\nThen I created two lists of dataframes for each year:\n\nny_crashes19 &lt;- purrr::map(ny_crashes, ~ .x |&gt;\n                             janitor::clean_names() |&gt; \n                             dplyr::filter(case_year == \"2019\"))\nny_crashes20 &lt;- purrr::map(ny_crashes, ~ .x |&gt; \n                             janitor::clean_names() |&gt; \n                             dplyr::filter(case_year == \"2020\"))\n\n\n\nCity boundary was downloaded using the tigris package:\n\nny_places &lt;- places(state = \"NY\", cb = TRUE, progress_bar = FALSE)\nnyc_boundary &lt;- ny_places[ny_places$NAME == \"New York\", ]"
+  },
+  {
+    "objectID": "posts/day1/day1.html#data",
+    "href": "posts/day1/day1.html#data",
+    "title": "Day 1: Points",
+    "section": "",
+    "text": "I used the crashapi package to gather fatal vehicle crashes for New York city for 2019-2020. Before looking at the maps, recall that stay-at-home orders were given in 2020 due to COVID-19. Therefore, the number of fatal crashes were expected to decrease in 2020 compared to 2019.\n\n# devtools::install_github(\"elipousson/crashapi\")\nlibrary(crashapi)\nlibrary(tidyverse)\nlibrary(janitor)\nlibrary(tigris)\nlibrary(patchwork)\n\nThere are 5 counties in New York City, so I made a function to download county data using the crashapi package:\n\nget_ny_county_data &lt;- function(county){\n  crashapi::get_fars(\n    year = c(2019, 2020),\n    state = \"New York\",\n    county = county,\n    details = FALSE,\n    geometry = TRUE\n  )\n}\n\nny_counties &lt;-  c(\"New York County\", \"Kings County\", \n    \"Queens County\", \"Bronx County\",\n    \"Richmond County\")\n\nny_crashes &lt;- purrr::map(\n  ny_counties,\n  ~ get_ny_county_data(.x)\n) \n\nny_crashes &lt;- purrr::set_names(ny_crashes, ny_counties) \n\nThen I created two lists of dataframes for each year:\n\nny_crashes19 &lt;- purrr::map(ny_crashes, ~ .x |&gt;\n                             janitor::clean_names() |&gt; \n                             dplyr::filter(case_year == \"2019\"))\nny_crashes20 &lt;- purrr::map(ny_crashes, ~ .x |&gt; \n                             janitor::clean_names() |&gt; \n                             dplyr::filter(case_year == \"2020\"))\n\n\n\nCity boundary was downloaded using the tigris package:\n\nny_places &lt;- places(state = \"NY\", cb = TRUE, progress_bar = FALSE)\nnyc_boundary &lt;- ny_places[ny_places$NAME == \"New York\", ]"
+  },
+  {
+    "objectID": "posts/day1/day1.html#point-maps",
+    "href": "posts/day1/day1.html#point-maps",
+    "title": "Day 1: Points",
+    "section": "Point Maps",
+    "text": "Point Maps\nFinally, I was ready to visualize the single-vehicle fatal crashes in different counties. The function below does exactly that for a given year and county:\n\nplot_county_crashes &lt;- function(crash_list, num, total_vehs = \"1\"){\n  dataset &lt;- crash_list[[num]]\n  county &lt;- names(crash_list[num])\n  num_cases &lt;- nrow(dataset)\n  year &lt;- unique(dataset$case_year)\n  \n  ggplot() +\n  geom_sf(data = nyc_boundary, fill = NA, color = \"grey50\") +\n  geom_sf(\n    data = dataset |&gt; \n      dplyr::filter(totalvehicles == total_vehs),\n    aes(color =  totalvehicles),\n    alpha = 0.5\n  ) +\n  labs(title = paste0(county, \" (\", year, \")\"),\n       subtitle = paste0(\" (# of crashes: \", num_cases, \")\")) +\n  theme_void() +\n  theme(legend.position = \"none\")\n}\n\nAnd the following function plots the same county for both years:\n\ncreate_combined_plot &lt;- function(num,\n                                 list1 = ny_crashes19,\n                                 list2 = ny_crashes20\n                                 ){\n  plot_county_crashes(list1, num) | plot_county_crashes(list2, num)\n}\n\n\nMaps\n\ncreate_combined_plot(1)\n\n\n\n\n\n\n\ncreate_combined_plot(2)\n\n\n\n\n\n\n\ncreate_combined_plot(4)\n\n\n\n\n\n\n\ncreate_combined_plot(5)\n\n\n\n\n\n\n\n\nBronx county had twice the crashes in 2020 compared to 2019!\nAnd something is wrong with the data for Queens county:\n\ncreate_combined_plot(3)"
+  }
+]

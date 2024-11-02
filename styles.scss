@@ -1,0 +1,86 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Macondo&display=swap');
+
+/*-- scss:rules --*/
+
+h1, h2, h3 {
+  font-family: 'Afacad Flux', sans-serif;
+  font-style: normal;
+}
+
+.hero-container {
+  overflow: hidden;
+  position: relative;
+  max-height: 52vh;
+  height: 52vh;
+}
+
+.hero-image {
+  position: absolute;
+  bottom: 0;
+  /* liner gradient tints the image darker for readability*/
+  background-image: linear-gradient( rgba(0,0,0,.3), rgba(0,0,0,.3) ), url(/images/image_title_block.jpg);
+  background-size: cover;
+  height: auto;
+  width: 100vw;
+  background-color: #141c25;
+  display: flex; /* Change to `display: none` for no hero image */
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  padding: 21vh 0;
+}
+
+.ALA-top {
+  position: relative;
+  text-align: center;
+  font-size: 100px;
+  color: #ffffff;
+  padding-right: 133px;
+  margin-bottom: -3.7rem;
+  font-weight: bold;
+}
+
+.ALA-bottom {
+  position: relative;
+  text-align: center;
+  font-size: 100px;
+  font-style: italic;
+  color: #EEECEA;
+  padding-left: 105px;
+  font-weight: bold;
+}
+
+
+
+
+
+@media (max-height: 876px) {
+  .hero-container {
+    max-height: 75vh;
+    height: 66vh;
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 952px){
+  /*--    --*/
+  .hero-container {
+    max-height: 75vh;
+    height: 66vh;
+    display: flex;
+  }
+  .hero-image {
+    position: relative;
+    background-attachment: scroll;
+    background-position: 84% center;
+    display: block;
+    padding: none;
+    align-content: center;
+    object-fit: cover;
+    padding: 6vh 0;
+  }
+
+}
+

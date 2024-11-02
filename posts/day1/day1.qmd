@@ -1,0 +1,121 @@
+---
+title: "Day 1: Points"
+date: "2024-11-01"
+categories: [points, crashapi, tigris]
+cache: true
+---
+
+## Data
+
+I used the [crashapi](https://github.com/elipousson/crashapi) package to gather fatal vehicle crashes for New York city for 2019-2020. Before looking at the maps, recall that stay-at-home orders were given in 2020 due to COVID-19. Therefore, the number of fatal crashes were expected to decrease in 2020 compared to 2019.
+
+```{r data}
+# devtools::install_github("elipousson/crashapi")
+library(crashapi)
+library(tidyverse)
+library(janitor)
+library(tigris)
+library(patchwork)
+```
+
+There are 5 counties in New York City, so I made a function to download county data using the `crashapi` package:
+
+```{r}
+get_ny_county_data <- function(county){
+  crashapi::get_fars(
+    year = c(2019, 2020),
+    state = "New York",
+    county = county,
+    details = FALSE,
+    geometry = TRUE
+  )
+}
+
+ny_counties <-  c("New York County", "Kings County", 
+    "Queens County", "Bronx County",
+    "Richmond County")
+
+ny_crashes <- purrr::map(
+  ny_counties,
+  ~ get_ny_county_data(.x)
+) 
+
+ny_crashes <- purrr::set_names(ny_crashes, ny_counties) 
+```
+
+Then I created two lists of dataframes for each year:
+
+```{r}
+ny_crashes19 <- purrr::map(ny_crashes, ~ .x |>
+                             janitor::clean_names() |> 
+                             dplyr::filter(case_year == "2019"))
+ny_crashes20 <- purrr::map(ny_crashes, ~ .x |> 
+                             janitor::clean_names() |> 
+                             dplyr::filter(case_year == "2020"))
+```
+
+### City Boundary
+
+City boundary was downloaded using the `tigris` package:
+
+```{r}
+#| echo: true
+ny_places <- places(state = "NY", cb = TRUE, progress_bar = FALSE)
+nyc_boundary <- ny_places[ny_places$NAME == "New York", ]
+```
+
+## Point Maps
+
+Finally, I was ready to visualize the single-vehicle fatal crashes in different counties. The function below does exactly that for a given year and county:
+
+```{r}
+plot_county_crashes <- function(crash_list, num, total_vehs = "1"){
+  dataset <- crash_list[[num]]
+  county <- names(crash_list[num])
+  num_cases <- nrow(dataset)
+  year <- unique(dataset$case_year)
+  
+  ggplot() +
+  geom_sf(data = nyc_boundary, fill = NA, color = "grey50") +
+  geom_sf(
+    data = dataset |> 
+      dplyr::filter(totalvehicles == total_vehs),
+    aes(color =  totalvehicles),
+    alpha = 0.5
+  ) +
+  labs(title = paste0(county, " (", year, ")"),
+       subtitle = paste0(" (# of crashes: ", num_cases, ")")) +
+  theme_void() +
+  theme(legend.position = "none")
+}
+```
+
+And the following function plots the same county for both years:
+
+```{r}
+create_combined_plot <- function(num,
+                                 list1 = ny_crashes19,
+                                 list2 = ny_crashes20
+                                 ){
+  plot_county_crashes(list1, num) | plot_county_crashes(list2, num)
+}
+```
+
+### Maps
+
+```{r}
+create_combined_plot(1)
+create_combined_plot(2)
+create_combined_plot(4)
+create_combined_plot(5)
+```
+
+Bronx county had twice the crashes in 2020 compared to 2019!
+
+And something is wrong with the data for Queens county:
+
+```{r}
+create_combined_plot(3)
+```
+
+
