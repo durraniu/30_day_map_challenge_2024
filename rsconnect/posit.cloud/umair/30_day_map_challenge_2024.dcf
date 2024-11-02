@@ -1,0 +1,12 @@
+name: 30_day_map_challenge_2024
+title: 30_day_map_challenge_2024
+username: umair
+account: umair
+server: posit.cloud
+hostUrl: https://api.posit.cloud/v1
+appId: 9150809
+bundleId: 9304751
+url: https://posit.cloud/content/9150809
+version: 1
+asMultiple: FALSE
+asStatic: TRUE
