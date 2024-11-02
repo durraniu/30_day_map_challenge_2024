@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - "image_title_block.jpg"
 
 website:
   title: "Home"
