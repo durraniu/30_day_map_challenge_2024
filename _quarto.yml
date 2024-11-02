@@ -17,7 +17,7 @@ website:
 format:
   html:
     theme: lux
-    css: styles.scss
+    css: styles.css
     df-print: paged
 
 

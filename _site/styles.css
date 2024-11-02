@@ -20,10 +20,10 @@ h1, h2, h3 {
   position: absolute;
   bottom: 0;
   /* liner gradient tints the image darker for readability*/
-  background-image: linear-gradient( rgba(0,0,0,.3), rgba(0,0,0,.3) ), url(/image_title_block.jpg);
+  background-image: linear-gradient( rgba(0,0,0,.3), rgba(0,0,0,.3) ), url(image_title_block.jpg);
   background-size: cover;
   height: auto;
-  width: 100vw;
+  width: 100%;
   background-color: #141c25;
   display: flex; /* Change to `display: none` for no hero image */
   justify-content: center;
@@ -76,7 +76,7 @@ h1, h2, h3 {
     background-attachment: scroll;
     background-position: 84% center;
     display: block;
-    padding: none;
+    padding: 0;
     align-content: center;
     object-fit: cover;
     padding: 6vh 0;
