@@ -1,0 +1,19 @@
+---
+title: "Day 2: Lines"
+date: "2024-11-02"
+categories: [lines]
+image: image.png
+format: 
+  html:
+    page-layout: full
+---
+
+## Data
+
+I downloaded road network data from five cities using the `osmdata` package in R.
+
+## Map
+
+I created an app with the help from shiny assistant. The app shows a road network and you need to guess the what city the road network is from. See if you can guess the city by looking at the road network:
+
+<iframe width="100%" height="800px" src="https://umair.shinyapps.io/day_2_network_game/"> </iframe>

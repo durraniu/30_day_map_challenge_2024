@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "30 Day Map Challenge 2024",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDay 2: Lines\n\n\n\n\n\n\nlines\n\n\n\n\n\n\n\n\n\nNov 2, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/day1/day1.html",
@@ -26,5 +26,26 @@
     "title": "Day 1: Points",
     "section": "Point Maps",
     "text": "Point Maps\nFinally, I was ready to visualize the single-vehicle fatal crashes in different counties. The function below does exactly that for a given year and county:\n\nplot_county_crashes &lt;- function(crash_list, num, total_vehs = \"1\"){\n  dataset &lt;- crash_list[[num]]\n  county &lt;- names(crash_list[num])\n  num_cases &lt;- nrow(dataset)\n  year &lt;- unique(dataset$case_year)\n  \n  ggplot() +\n  geom_sf(data = nyc_boundary, fill = NA, color = \"grey50\") +\n  geom_sf(\n    data = dataset |&gt; \n      dplyr::filter(totalvehicles == total_vehs),\n    aes(color =  totalvehicles),\n    alpha = 0.5\n  ) +\n  labs(title = paste0(county, \" (\", year, \")\"),\n       subtitle = paste0(\" (# of crashes: \", num_cases, \")\")) +\n  theme_void() +\n  theme(legend.position = \"none\")\n}\n\nAnd the following function plots the same county for both years:\n\ncreate_combined_plot &lt;- function(num,\n                                 list1 = ny_crashes19,\n                                 list2 = ny_crashes20\n                                 ){\n  plot_county_crashes(list1, num) | plot_county_crashes(list2, num)\n}\n\n\nMaps\n\ncreate_combined_plot(1)\n\n\n\n\n\n\n\ncreate_combined_plot(2)\n\n\n\n\n\n\n\ncreate_combined_plot(4)\n\n\n\n\n\n\n\ncreate_combined_plot(5)\n\n\n\n\n\n\n\n\nBronx county had twice the crashes in 2020 compared to 2019!\nAnd something is wrong with the data for Queens county:\n\ncreate_combined_plot(3)"
+  },
+  {
+    "objectID": "posts/day2/day2.html",
+    "href": "posts/day2/day2.html",
+    "title": "Day 2: Lines",
+    "section": "",
+    "text": "I downloaded road network data from five cities using the osmdata package in R."
+  },
+  {
+    "objectID": "posts/day2/day2.html#data",
+    "href": "posts/day2/day2.html#data",
+    "title": "Day 2: Lines",
+    "section": "",
+    "text": "I downloaded road network data from five cities using the osmdata package in R."
+  },
+  {
+    "objectID": "posts/day2/day2.html#map",
+    "href": "posts/day2/day2.html#map",
+    "title": "Day 2: Lines",
+    "section": "Map",
+    "text": "Map\nI created an app with the help from shiny assistant. The app shows a road network and you need to guess the what city the road network is from. See if you can guess the city by looking at the road network:"
   }
 ]

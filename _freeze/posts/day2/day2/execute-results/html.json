@@ -1,0 +1,21 @@
+{
+  "hash": "33b1f8cb0bf1f322ad446424cfce0e07",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Day 2: Lines\"\ndate: \"2024-11-02\"\ncategories: [lines]\n---\n\n\n\n## Data\n\nI downloaded road network data from five cities using the `osmdata` package in R.\n\n## Map\n\nI created an app with the help from shiny assistant. The app shows a road network and you need to guess the what city the road network is from. See if you can guess the city by looking at the road network:\n\n\n\n::: {.cell}\n<iframe src=\"https://connect.posit.cloud/durraniu/content/0192efc2-e5f2-639b-3616-883fdecd3b94?showcase=0\" width=\"672\" height=\"600px\" data-external=\"1\"></iframe>\n:::\n",
+    "supporting": [
+      "day2_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
