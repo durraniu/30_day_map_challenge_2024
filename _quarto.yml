@@ -8,7 +8,7 @@ website:
   navbar:
     left:
       - icon: github
-        href: https://github.com/
+        href: https://github.com/durraniu/30_day_map_challenge_2024
     right:
       - href: https://umairdurrani.com/
         text: About
