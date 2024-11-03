@@ -1,0 +1,19 @@
+{
+  "hash": "636d6e57cf090880af5d8159a90ebf58",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Day 3: Polygons\"\ndate: \"2024-11-03\"\ncategories: [polygons]\ncache: true\nimage: image.png\n---\n\n\n\n## Data \n\nI used the [Urban Areas dataset](https://geodata.bts.gov/datasets/usdot::urban-areas/about) from Bureau of Transportation Statistics website in the geojson format and loaded it in R via the `sf` package: \n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(stringr)\nlibrary(patchwork)\n\nurban_areas <- sf::st_read(here::here(\"posts/day3/data/NTAD_Urban_Areas_-6100623683100682750.geojson\"))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nReading layer `NTAD_Urban_Areas_-6100623683100682750' from data source \n  `D:\\30_day_map_challenge_2024\\posts\\day3\\data\\NTAD_Urban_Areas_-6100623683100682750.geojson' \n  using driver `GeoJSON'\nSimple feature collection with 2645 features and 13 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -170.7893 ymin: -14.36541 xmax: 145.7916 ymax: 64.92889\nGeodetic CRS:  WGS 84\n```\n\n\n:::\n:::\n\n\n\nAccording to the website:  \n\n> There are 2,645 Urban Areas (UAs) in this data release with either a minimum population of 5,000 or a housing unit count of 2,000 units.\n\nInstead of plotting all the areas, I selected the top highly populated cities:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ntop_ua_names <- c(\n  \"New York\",\n  \"Los Angeles\",\n  \"Chicago\",\n  \"Houston\",\n  \"Phoenix\",\n  \"Philadelphia\",\n  \"San Antonio\",\n  \"San Diego\"\n) \n\ntop_ua <- urban_areas |> \n  dplyr::filter(stringr::str_detect(NAME20, paste(top_ua_names, collapse = \"|\")))\n```\n:::\n\n\n\nNext, I created a function to plot each urban area polygon. Unfortunately, `ggplot2::facet_wrap` does not work on `sf` data. So, I needed to plot each urban area separately:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\ncreate_urban_polygons <- function(row_num){\n  df_ua <- top_ua[row_num, ]\n  city_name <- df_ua$NAME20\n  land_area <- format(df_ua$ALAND20/(1e+6), digits = 6, scientific = FALSE)\n  water_area <- format(df_ua$AWATER20/(1e+6), digits = 4, scientific = FALSE)\n  \n  ggplot(\n    data = df_ua\n  ) +\n    geom_sf(fill = \"aquamarine\") +\n    labs(\n      title = city_name,\n      subtitle = paste0(\n        \"Land Area: \", land_area, \" sq. km\", \n        \"\\nWater Area: \", water_area, \" sq. km\"\n      )\n    )\n}\n\nlist_of_polygon_plots <- lapply(\n  1:nrow(top_ua),\n  \\(x) create_urban_polygons(x)\n)\n```\n:::\n\n\n\nNow, with `patchwork`, I was able to combine all the plots:\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot2::theme_set(theme_void(base_size = 20))\nall_urban_area_polygons <- wrap_plots(list_of_polygon_plots, ncol = 2)\nggplot2::ggsave(filename = here::here(\"posts/day3/all_plots.png\"), \n                plot = all_urban_area_polygons, \n                width = 30,\n                height = 48, \n                units = \"in\", \n                dpi = 300, \n                bg = \"white\")\n```\n:::\n\n\n\nAnd here are the polygons:\n\n:::{.column-page}\n![](all_plots.png)\n:::\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-in-header": [
+        "<link href=\"../../site_libs/pagedtable-1.1/css/pagedtable.css\" rel=\"stylesheet\" />\n<script src=\"../../site_libs/pagedtable-1.1/js/pagedtable.js\"></script>\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

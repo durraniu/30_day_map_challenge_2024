@@ -1,0 +1,93 @@
+---
+title: "Day 3: Polygons"
+date: "2024-11-03"
+categories: [polygons]
+cache: true
+image: image.png
+---
+
+## Data 
+
+I used the [Urban Areas dataset](https://geodata.bts.gov/datasets/usdot::urban-areas/about) from Bureau of Transportation Statistics website in the geojson format and loaded it in R via the `sf` package: 
+
+```{r}
+library(tidyverse)
+library(sf)
+library(stringr)
+library(patchwork)
+
+urban_areas <- sf::st_read(here::here("posts/day3/data/NTAD_Urban_Areas_-6100623683100682750.geojson"))
+```
+
+According to the website:  
+
+> There are 2,645 Urban Areas (UAs) in this data release with either a minimum population of 5,000 or a housing unit count of 2,000 units.
+
+Instead of plotting all the areas, I selected the top highly populated cities:
+
+```{r}
+top_ua_names <- c(
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "Houston",
+  "Phoenix",
+  "Philadelphia",
+  "San Antonio",
+  "San Diego"
+) 
+
+top_ua <- urban_areas |> 
+  dplyr::filter(stringr::str_detect(NAME20, paste(top_ua_names, collapse = "|")))
+```
+
+Next, I created a function to plot each urban area polygon. Unfortunately, `ggplot2::facet_wrap` does not work on `sf` data. So, I needed to plot each urban area separately:
+
+```{r}
+create_urban_polygons <- function(row_num){
+  df_ua <- top_ua[row_num, ]
+  city_name <- df_ua$NAME20
+  land_area <- format(df_ua$ALAND20/(1e+6), digits = 6, scientific = FALSE)
+  water_area <- format(df_ua$AWATER20/(1e+6), digits = 4, scientific = FALSE)
+  
+  ggplot(
+    data = df_ua
+  ) +
+    geom_sf(fill = "aquamarine") +
+    labs(
+      title = city_name,
+      subtitle = paste0(
+        "Land Area: ", land_area, " sq. km", 
+        "\nWater Area: ", water_area, " sq. km"
+      )
+    )
+}
+
+list_of_polygon_plots <- lapply(
+  1:nrow(top_ua),
+  \(x) create_urban_polygons(x)
+)
+```
+
+Now, with `patchwork`, I was able to combine all the plots:
+
+
+```{r}
+#| eval: false
+ggplot2::theme_set(theme_void(base_size = 20))
+all_urban_area_polygons <- wrap_plots(list_of_polygon_plots, ncol = 2)
+ggplot2::ggsave(filename = here::here("posts/day3/all_plots.png"), 
+                plot = all_urban_area_polygons, 
+                width = 30,
+                height = 48, 
+                units = "in", 
+                dpi = 300, 
+                bg = "white")
+```
+
+And here are the polygons:
+
+:::{.column-page}
+![](all_plots.png)
+:::
+
