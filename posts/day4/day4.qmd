@@ -1,0 +1,73 @@
+---
+title: "Day 4: Hexagons"
+date: "2024-11-04"
+categories: [hexagons, collisions]
+cache: true
+---
+
+## Data
+
+I re-used the New York City fatal collisions data from [Day 1](https://30daymapchallenge24.netlify.app/posts/day1/day1).
+
+```{r}
+library(sf)
+library(dplyr)
+library(tmap)
+
+load(file = here::here("posts/day1/nyc_data.rda"))
+```
+
+This loads the list of collisions for New York City for the years 2019 and 2020.
+
+## Create hexagonal grid of collisions
+
+I create a function to create hexagonal grids. This is based on [this awesome blog post](https://urbandatapalette.com/post/2021-08-tessellation-sf/).
+
+```{r}
+create_honeycomb <- function(collision_list){
+  nyc <- collision_list |> dplyr::bind_rows()
+  
+  area_honeycomb_grid <- st_make_grid(nyc, what = "polygons", square = FALSE)
+  honeycomb_grid_sf <- st_sf(area_honeycomb_grid) |> 
+    dplyr::mutate(grid_id = 1:length(lengths(area_honeycomb_grid)))
+  
+  honeycomb_grid_sf$n_colli <- lengths(st_intersects(honeycomb_grid_sf, nyc))
+  
+  # remove grid of 0 collisions
+  dplyr::filter(honeycomb_grid_sf, n_colli > 0)
+}
+```
+
+Create grids for 2019:
+
+```{r}
+nyc_honeycomb19 <- create_honeycomb(ny_crashes19)
+```
+
+
+## Map
+
+Ready to plot the grids:
+
+```{r}
+tmap_mode("view")
+
+tm_shape(nyc_honeycomb19) +
+  tm_fill(
+    col = "n_colli",
+    palette = "Reds",
+    style = "cont",
+    title = "Number of fatal collisions",
+    id = "grid_id",
+    showNA = FALSE,
+    alpha = 0.6,
+    popup.vars = c(
+      "Number of collisions: " = "n_colli"
+    ),
+    popup.format = list(
+      n_colli = list(format = "f", digits = 0)
+    )
+  ) +
+  tm_borders(col = "grey40", lwd = 0.7)
+```
+

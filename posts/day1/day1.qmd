@@ -62,6 +62,8 @@ City boundary was downloaded using the `tigris` package:
 #| echo: true
 ny_places <- places(state = "NY", cb = TRUE, progress_bar = FALSE)
 nyc_boundary <- ny_places[ny_places$NAME == "New York", ]
+
+# save(ny_crashes19, ny_crashes20, nyc_boundary, file = here::here("posts/day1/nyc_data.rda"))
 ```
 
 ## Point Maps

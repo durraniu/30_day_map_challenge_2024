@@ -5,3 +5,5 @@
 
 /.quarto/
 posts/day3/data
+.Renviron
+garbage_bin
