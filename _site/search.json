@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "30 Day Map Challenge 2024",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDay 4: Hexagons\n\n\n\n\n\n\nhexagons\n\n\ncollisions\n\n\n\n\n\n\n\n\n\nNov 4, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: Polygons\n\n\n\n\n\n\npolygons\n\n\n\n\n\n\n\n\n\nNov 3, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2: Lines\n\n\n\n\n\n\nlines\n\n\n\n\n\n\n\n\n\nNov 2, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDay 5: A Journey\n\n\n\n\n\n\njourney\n\n\n\n\n\n\n\n\n\nNov 5, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Hexagons\n\n\n\n\n\n\nhexagons\n\n\ncollisions\n\n\n\n\n\n\n\n\n\nNov 4, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: Polygons\n\n\n\n\n\n\npolygons\n\n\n\n\n\n\n\n\n\nNov 3, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2: Lines\n\n\n\n\n\n\nlines\n\n\n\n\n\n\n\n\n\nNov 2, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/day1/day1.html",
@@ -89,5 +89,19 @@
     "title": "Day 4: Hexagons",
     "section": "Map",
     "text": "Map\nReady to plot the grids:\n\ntmap_mode(\"view\")\n\ntm_shape(nyc_honeycomb19) +\n  tm_fill(\n    col = \"n_colli\",\n    palette = \"Reds\",\n    style = \"cont\",\n    title = \"Number of fatal collisions\",\n    id = \"grid_id\",\n    showNA = FALSE,\n    alpha = 0.6,\n    popup.vars = c(\n      \"Number of collisions: \" = \"n_colli\"\n    ),\n    popup.format = list(\n      n_colli = list(format = \"f\", digits = 0)\n    )\n  ) +\n  tm_borders(col = \"grey40\", lwd = 0.7)"
+  },
+  {
+    "objectID": "posts/day5/day5.html",
+    "href": "posts/day5/day5.html",
+    "title": "Day 5: A Journey",
+    "section": "",
+    "text": "Around the World in Eighty Days\n\n\n\n\nFogg accepts a £20,000 wager to travel around the world in 80 days. ‘The unforeseen does not exist.’\n\n\n\n\n\n\n\n\n\nDetective Fix begins to pursue Fogg, suspecting him of bank robbery.\n\n\n\n\n\nFogg and Passepartout encounter a disrupted railway line and arrange for an elephant to continue their journey. \n\n\n\n\nFogg rescues Aouda, a widow who is to be sacrificed, saying, ‘I have yet twelve hours to save her!’ \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is a proof of concept to make a quarto closeread document with videos and images.\n\n\n\nReuseCC BY 4.0CitationBibTeX citation:@online{durrani2024,\n  author = {Durrani, Umair},\n  title = {Day 5: {A} {Journey}},\n  date = {2024-11-05},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nDurrani, Umair. 2024. “Day 5: A Journey.” November 5, 2024."
+  },
+  {
+    "objectID": "posts/day5/test.html",
+    "href": "posts/day5/test.html",
+    "title": "Around the World in Eighty Days",
+    "section": "",
+    "text": "Around the World in Eighty Days\n\n\n\n\nFogg accepts a £20,000 wager to travel around the world in 80 days. ‘The unforeseen does not exist.’\n\n\n\n\n\n\n\n\n\nDetective Fix begins to pursue Fogg, suspecting him of bank robbery.\n\n\n\n\n\nFogg and Passepartout encounter a disrupted railway line and arrange for an elephant to continue their journey. \n\n\n\n\nFogg rescues Aouda, a widow who is to be sacrificed, saying, ‘I have yet twelve hours to save her!’ \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is an excerpt of the first three lines of A Poem (and a Painting) About the Suffering That Hides in Plain Sight by Elisa Gabbert, appearing in The New York Times on March 6, 2022.\n\n\n\nReuseCC BY 4.0CitationBibTeX citation:@online{durrani,\n  author = {Durrani, Umair},\n  langid = {en}\n}\nFor attribution, please cite this work as:\nDurrani, Umair. n.d."
   }
 ]

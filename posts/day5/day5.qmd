@@ -1,0 +1,176 @@
+---
+title: "Day 5: A Journey"
+date: "2024-11-05"
+categories: [journey]
+echo: false
+format:
+  closeread-html:
+    remove-header-space: true
+    debug-mode: false
+    cr-style:
+      narrative-text-color-sidebar: white
+      narrative-font-size: 1.25rem
+      narrative-sidebar-width: minmax(400px, 1fr)
+      narrative-border-radius: 5px
+      narrative-background-color-overlay: "#111111dd"
+      narrative-background-color-sidebar: "#111111"
+      section-background-color: white
+---
+
+```{r}
+library(tidyverse)
+library(mapgl)
+
+source(here::here("posts/day5/assets/story_and_images.R"))
+```
+
+
+```{r}
+all_bb <- lapply(
+  paste0(journey$landmark, ", ", journey$location),
+  osmdata::getbb
+)
+
+landmark_coords <- lapply(all_bb, function(x){
+  c(mean(x[1,]), mean(x[2,]))
+})
+```
+
+:::{.cr-section}
+
+:::{focus-on="cr-london"}
+# Around the World in Eighty Days
+:::
+
+`r journey$situation_quotation[1]`
+
+![](assets/image1.png)
+
+:::{focus-on="cr-egypt"}
+`r journey$situation_quotation[2]`
+
+![](assets/image2.png)
+:::
+
+
+:::{focus-on="cr-india1"}
+`r journey$situation_quotation[3]`
+![](assets/image3.png)
+:::
+
+
+
+:::{focus-on="cr-india2"}
+`r journey$situation_quotation[4]`
+![](assets/image4.png)
+:::
+
+
+
+
+
+
+
+
+:::{#cr-london}
+
+```{r}
+#| eval: false
+mapboxgl(
+  center = c(-97.6, 25.4)
+) |> 
+  fly_to(
+    center = landmark_coords[[1]],
+    zoom = 16.5,
+    pitch = 75,
+    bearing = 136.8
+  )
+```
+
+
+<iframe width="860" height="615" src="assets/video1.mp4" frameborder="0" allow="autoplay" autoplay></iframe>
+
+
+:::
+
+
+:::{#cr-egypt}
+
+```{r}
+#| eval: false
+mapboxgl(
+  center = landmark_coords[[1]],
+  zoom = 16.5,
+    pitch = 75,
+    bearing = 136.8
+) |> 
+  fly_to(
+    center = landmark_coords[[2]],
+    zoom = 15,
+    pitch = 75,
+    bearing = 136.8
+  )
+```
+
+
+<iframe width="860" height="615" src="assets/video2.mp4" frameborder="0"></iframe>
+
+:::
+
+
+
+:::{#cr-india1}
+
+```{r}
+#| eval: false
+mapboxgl(
+  center = landmark_coords[[2]],
+  zoom = 15,
+    pitch = 75,
+    bearing = 136.8
+) |> 
+  fly_to(
+    center = landmark_coords[[3]],
+    zoom = 16.5,
+    pitch = 75,
+    bearing = 136.8
+  )
+```
+
+
+<iframe width="860" height="615" src="assets/video3.mp4" frameborder="0"></iframe>
+
+:::
+
+
+
+:::{#cr-india2}
+
+```{r}
+#| eval: false
+mapboxgl(
+  center = landmark_coords[[3]],
+  zoom = 16.5,
+    pitch = 75,
+    bearing = 136.8
+) |> 
+  fly_to(
+    center = landmark_coords[[4]],
+    zoom = 16.6,
+    pitch = 75,
+    bearing = 136.8
+  )
+```
+
+
+<iframe width="860" height="615" src="assets/video4.mp4" frameborder="0"></iframe>
+
+:::
+
+:::
+
+\
+\
+\
+
+This is a proof of concept to make a quarto closeread document with videos and images.

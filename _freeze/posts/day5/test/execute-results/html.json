@@ -1,0 +1,15 @@
+{
+  "hash": "4ef88d85fa175a56ff30f762ecd1c0be",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\necho: false\nformat:\n  closeread-html:\n    remove-header-space: true\n    debug-mode: false\n    cr-style:\n      narrative-text-color-sidebar: white\n      narrative-font-family: 'Georgia, \"Times New Roman\", Times, serif'\n      narrative-font-size: 1.25rem\n      narrative-sidebar-width: minmax(400px, 1fr)\n      narrative-border-radius: 5px\n      narrative-background-color-overlay: \"#111111dd\"\n      narrative-background-color-sidebar: \"#111111\"\n      section-background-color: white\n      poem-font-family: 'Georgia, \"Times New Roman\", Times, serif'\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n\n:::{.cr-section}\n\n:::{focus-on=\"cr-london\"}\n# Around the World in Eighty Days\n:::\n\nFogg accepts a £20,000 wager to travel around the world in 80 days. 'The unforeseen does not exist.'\n\n![](assets/image1.png)\n\n:::{focus-on=\"cr-egypt\"}\nDetective Fix begins to pursue Fogg, suspecting him of bank robbery.\n\n![](assets/image2.png)\n:::\n\n\n:::{focus-on=\"cr-india1\"}\nFogg and Passepartout encounter a disrupted railway line and arrange for an elephant to continue their journey.\n![](assets/image3.png)\n:::\n\n\n\n:::{focus-on=\"cr-india2\"}\nFogg rescues Aouda, a widow who is to be sacrificed, saying, 'I have yet twelve hours to save her!'\n![](assets/image4.png)\n:::\n\n\n\n\n\n\n\n\n:::{#cr-london}\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n<iframe width=\"860\" height=\"615\" src=\"assets/video1.mp4\" frameborder=\"0\" allow=\"autoplay\" autoplay></iframe>\n\n\n:::\n\n\n:::{#cr-egypt}\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n<iframe width=\"860\" height=\"615\" src=\"assets/video2.mp4\" frameborder=\"0\" allow=\"autoplay\" autoplay></iframe>\n\n:::\n\n\n\n:::{#cr-india1}\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n<iframe width=\"860\" height=\"615\" src=\"assets/video3.mp4\" frameborder=\"0\" allow=\"autoplay\" autoplay></iframe>\n\n:::\n\n\n\n:::{#cr-india2}\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n<iframe width=\"860\" height=\"615\" src=\"assets/video4.mp4\" frameborder=\"0\" allow=\"autoplay\" autoplay></iframe>\n\n:::\n\n:::\n\n\\\n\\\n\\\n\nThis is an excerpt of the first three lines of [*A Poem (and a Painting) About the Suffering That Hides in Plain Sight*](https://www.nytimes.com/interactive/2022/03/06/books/auden-musee-des-beaux-arts.html) by Elisa Gabbert, appearing in *The New York Times* on March 6, 2022.",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
