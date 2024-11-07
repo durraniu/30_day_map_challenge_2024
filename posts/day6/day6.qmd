@@ -1,0 +1,155 @@
+---
+title: "Day 6: Raster"
+date: "2024-11-06"
+categories: [raster, openrouteservice, fasterize]
+image: image.png
+cache: true
+---
+
+This post is based on works from [Milos Agathon (isochrone maps)](https://github.com/milos-agathon/isochrone_maps/blob/main/R/main.r) and a [lab](https://crd230.github.io/lab5b.html) from Spatial Methods in Community Research by Professor Noli Brazil.
+
+In this post, I create cycling time isochrone rasters. The first step is to load the required libraries:
+
+```{r}
+library(tidyverse)
+library(openrouteservice)
+library(mapview)
+library(sf)
+library(fasterize)
+library(leaflet)
+```
+
+
+The Open Route Service provides isochrones for different transportation modes:
+
+```{r}
+openrouteservice::ors_profile()
+```
+
+
+I'll create the isochrones for two cities: Toronto, Ontario in Canada and Lahore, Punjab in Pakistan:
+
+```{r}
+## coordinates
+tor_lat <- 43.75778976617083
+tor_lon <- -79.39326677619596
+
+lhr_lat <- 31.502425248570344
+lhr_lon <- 74.30409916687087
+
+tor_coords <- data.frame(tor_lon, tor_lat)
+lhr_coords <- data.frame(lhr_lon, lhr_lat)
+```
+
+## Query
+
+Next, I send queries to open route service to get isochrones:
+
+```{r}
+cycling_ams_tor <- openrouteservice::ors_isochrones(
+  locations = tor_coords,
+  profile = "cycling-regular",
+  range = 3600,
+  interval = 600,
+  api_key = Sys.getenv("ORS_API_KEY"),
+  output = "sf"
+)
+
+cycling_ams_lhr <- openrouteservice::ors_isochrones(
+  locations = lhr_coords,
+  profile = "cycling-regular",
+  range = 3600,
+  interval = 600,
+  api_key = Sys.getenv("ORS_API_KEY"),
+  output = "sf"
+)
+```
+
+```{r}
+cycling_ams_tor
+```
+
+
+Then group by `mins` to create non-overlapping areas:
+
+```{r}
+sf::sf_use_s2(FALSE)
+
+create_cycling_ams_cropped <- function(cycling_ams){
+  cycling_ams$mins <- cycling_ams$value / 60
+  
+  cycling_ams |>
+    dplyr::group_by(mins) |>
+    sf::st_intersection() |>
+    dplyr::ungroup()
+}
+
+cycling_ams_cropped_tor <- create_cycling_ams_cropped(cycling_ams_tor)
+cycling_ams_cropped_lhr <- create_cycling_ams_cropped(cycling_ams_lhr)
+```
+
+
+At this point, the `sf` objects above are not projected so they do no have any units:
+
+```{r}
+sf::st_crs(cycling_ams_cropped_tor)$units
+```
+
+But we need units to rasterize them. So, I project them to the relevant projection for each city:
+
+```{r}
+cycling_ams_cropped_tor_proj <- sf::st_transform(cycling_ams_cropped_tor, crs = 3161)
+cycling_ams_cropped_lhr_proj <- sf::st_transform(cycling_ams_cropped_lhr, crs = 32643)
+
+sf::st_crs(cycling_ams_cropped_lhr_proj)$units
+```
+
+
+## Rasterize
+
+Generate a 100m resolution raster: 
+
+```{r}
+template_tor <- raster(cycling_ams_cropped_tor_proj, resolution = 100)
+template_lhr <- raster(cycling_ams_cropped_lhr_proj, resolution = 100)
+```
+
+According to the lab cited above: "Then use the `fasterize()` function to allocate the minimum overlapping value from our isochrones to each grid cell":
+
+```{r}
+iso_surface_tor <- fasterize(cycling_ams_cropped_tor_proj, template_tor, 
+                             field = "mins", fun = "min")
+iso_surface_lhr <- fasterize(cycling_ams_cropped_lhr_proj, template_lhr, 
+                             field = "mins", fun = "min")
+```
+
+
+## Map
+
+```{r}
+pal_tor <- colorNumeric("viridis", cycling_ams_cropped_tor_proj$mins, na.color = "transparent")
+pal_lhr <- colorNumeric("viridis", cycling_ams_cropped_lhr_proj$mins, na.color = "transparent")
+
+leaflet::leaflet() |>
+  leaflet::addProviderTiles(
+    "CartoDB.Positron"
+  ) |>
+  addRasterImage(iso_surface_tor, colors = pal_tor, opacity = 0.5) |> 
+  addLegend(
+    values = sort(as.numeric(as.character(cycling_ams_cropped_tor$mins))), 
+    pal = pal_tor,
+    title = "Cycling time in Toronto"
+  )
+
+leaflet::leaflet() |>
+  leaflet::addProviderTiles(
+    "CartoDB.Positron"
+  ) |>
+  addRasterImage(iso_surface_lhr, colors = pal_lhr, opacity = 0.5) |> 
+  addLegend(
+    values = cycling_ams_cropped_lhr$mins, 
+    pal = pal_lhr,
+    title = "Cycling time in Lahore"
+  )
+```
+
