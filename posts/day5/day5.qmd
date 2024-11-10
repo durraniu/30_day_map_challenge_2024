@@ -1,7 +1,7 @@
 ---
 title: "Day 5: A Journey"
 date: "2024-11-05"
-categories: [journey]
+categories: [journey, mapgl]
 echo: false
 format:
   closeread-html:

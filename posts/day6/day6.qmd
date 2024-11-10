@@ -13,7 +13,6 @@ In this post, I create cycling time isochrone rasters. The first step is to load
 ```{r}
 library(tidyverse)
 library(openrouteservice)
-library(mapview)
 library(sf)
 library(fasterize)
 library(leaflet)

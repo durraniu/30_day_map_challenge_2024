@@ -75,6 +75,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="../../site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="../../site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="../../site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="../../site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="../../site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="../../site_libs/quarto-dashboard/components.js"></script>
+<link href="../../site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -132,10 +140,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="floating nav-fixed">
+<body class="quarto-dashboard floating nav-fixed dashboard-fill">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -169,81 +177,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-</header>
-<!-- content -->
-<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-body">
-      <h1 class="title">Day 4: Hexagons</h1>
-                                <div class="quarto-categories">
-                <div class="quarto-category">hexagons</div>
-                <div class="quarto-category">collisions</div>
-              </div>
-                  </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta">
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler hidden" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
 
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p><a href="https://umairdurrani.com/">Umair Durrani</a> </p>
-            </div>
-    </div>
-      
-      <div>
-      <div class="quarto-title-meta-heading">Published</div>
-      <div class="quarto-title-meta-contents">
-        <p class="date">November 4, 2024</p>
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Day 4: Hexagons</a></div>
+        
+        <div class="navbar-author">Umair Durrani</div>
       </div>
     </div>
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+</div>
+</nav>
+</header></header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
-  <li><a href="#create-hexagonal-grid-of-collisions" id="toc-create-hexagonal-grid-of-collisions" class="nav-link" data-scroll-target="#create-hexagonal-grid-of-collisions">Create hexagonal grid of collisions</a></li>
-  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map">Map</a></li>
-  </ul>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto bslib-grid-item html-fill-item">
+    
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item bslib-grid-item html-fill-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content">
 
-
-
-
-
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<div class="bslib-grid-item html-fill-item bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>I re-used the New York City fatal collisions data from <a href="https://30daymapchallenge24.netlify.app/posts/day1/day1">Day 1</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"posts/day1/nyc_data.rda"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>This loads the list of collisions for New York City for the years 2019 and 2020.</p>
-</section>
-<section id="create-hexagonal-grid-of-collisions" class="level2">
-<h2 class="anchored" data-anchor-id="create-hexagonal-grid-of-collisions">Create hexagonal grid of collisions</h2>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>I create a function to create hexagonal grids. This is based on <a href="https://urbandatapalette.com/post/2021-08-tessellation-sf/">this awesome blog post</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>create_honeycomb <span class="ot">&lt;-</span> <span class="cf">function</span>(collision_list){</span>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>create_honeycomb <span class="ot">&lt;-</span> <span class="cf">function</span>(collision_list){</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  nyc <span class="ot">&lt;-</span> collision_list <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  area_honeycomb_grid <span class="ot">&lt;-</span> <span class="fu">st_make_grid</span>(nyc, <span class="at">what =</span> <span class="st">"polygons"</span>, <span class="at">square =</span> <span class="cn">FALSE</span>)</span>
@@ -256,16 +268,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(honeycomb_grid_sf, n_colli <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>Create grids for 2019:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nyc_honeycomb19 <span class="ot">&lt;-</span> <span class="fu">create_honeycomb</span>(ny_crashes19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="map" class="level2">
-<h2 class="anchored" data-anchor-id="map">Map</h2>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nyc_honeycomb19 <span class="ot">&lt;-</span> <span class="fu">create_honeycomb</span>(ny_crashes19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
 <p>Ready to plot the grids:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="sourceCode cell-code html-fill-item html-fill-container" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(nyc_honeycomb19) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(</span>
@@ -284,24 +325,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"grey40"</span>, <span class="at">lwd =</span> <span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-b173af0d218541d1dca5" style="width:100%;height:464px;"></div>
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="leaflet html-widget html-fill-item html-fill-container" id="htmlwidget-b173af0d218541d1dca5" style="width:100%;height:464px;"></div>
 <script type="application/json" data-for="htmlwidget-b173af0d218541d1dca5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addPolygons","args":[[[[{"lng":[-74.19829444,-74.22310235650001,-74.22310235650001,-74.19829444,-74.1734865235,-74.1734865235,-74.19829444],"lat":[40.49028206546138,40.50460492273069,40.5332506372693,40.54757349453861,40.5332506372693,40.50460492273069,40.49028206546138]}]],[[{"lng":[-74.1734865235,-74.19829444,-74.19829444,-74.1734865235,-74.14867860700001,-74.14867860700001,-74.1734865235],"lat":[40.5332506372693,40.54757349453861,40.57621920907723,40.59054206634654,40.57621920907723,40.54757349453861,40.5332506372693]}]],[[{"lng":[-74.14867860700001,-74.1734865235,-74.1734865235,-74.14867860700001,-74.1238706905,-74.1238706905,-74.14867860700001],"lat":[40.57621920907723,40.59054206634654,40.61918778088516,40.63351063815447,40.61918778088516,40.59054206634654,40.57621920907723]}]],[[{"lng":[-74.1238706905,-74.14867860700001,-74.14867860700001,-74.1238706905,-74.099062774,-74.099062774,-74.1238706905],"lat":[40.5332506372693,40.54757349453861,40.57621920907723,40.59054206634654,40.57621920907723,40.54757349453861,40.5332506372693]}]],[[{"lng":[-74.1238706905,-74.14867860700001,-74.14867860700001,-74.1238706905,-74.099062774,-74.099062774,-74.1238706905],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-74.0246390245,-74.049446941,-74.049446941,-74.0246390245,-73.999831108,-73.999831108,-74.0246390245],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-74.0246390245,-74.049446941,-74.049446941,-74.0246390245,-73.999831108,-73.999831108,-74.0246390245],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.999831108,-74.0246390245,-74.0246390245,-73.999831108,-73.9750231915,-73.9750231915,-73.999831108],"lat":[40.57621920907723,40.59054206634654,40.61918778088516,40.63351063815447,40.61918778088516,40.59054206634654,40.57621920907723]}]],[[{"lng":[-73.999831108,-74.0246390245,-74.0246390245,-73.999831108,-73.9750231915,-73.9750231915,-73.999831108],"lat":[40.66215635269308,40.67647920996239,40.70512492450101,40.71944778177032,40.70512492450101,40.67647920996239,40.66215635269308]}]],[[{"lng":[-73.999831108,-74.0246390245,-74.0246390245,-73.999831108,-73.9750231915,-73.9750231915,-73.999831108],"lat":[40.74809349630894,40.76241635357825,40.79106206811686,40.80538492538617,40.79106206811686,40.76241635357825,40.74809349630894]}]],[[{"lng":[-73.9750231915,-73.999831108,-73.999831108,-73.9750231915,-73.95021527500001,-73.95021527500001,-73.9750231915],"lat":[40.5332506372693,40.54757349453861,40.57621920907723,40.59054206634654,40.57621920907723,40.54757349453861,40.5332506372693]}]],[[{"lng":[-73.9750231915,-73.999831108,-73.999831108,-73.9750231915,-73.95021527500001,-73.95021527500001,-73.9750231915],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-73.9750231915,-73.999831108,-73.999831108,-73.9750231915,-73.95021527500001,-73.95021527500001,-73.9750231915],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.9750231915,-73.999831108,-73.999831108,-73.9750231915,-73.95021527500001,-73.95021527500001,-73.9750231915],"lat":[40.79106206811686,40.80538492538617,40.83403063992479,40.8483534971941,40.83403063992479,40.80538492538617,40.79106206811686]}]],[[{"lng":[-73.95021527500001,-73.9750231915,-73.9750231915,-73.95021527500001,-73.9254073585,-73.9254073585,-73.95021527500001],"lat":[40.57621920907723,40.59054206634654,40.61918778088516,40.63351063815447,40.61918778088516,40.59054206634654,40.57621920907723]}]],[[{"lng":[-73.95021527500001,-73.9750231915,-73.9750231915,-73.95021527500001,-73.9254073585,-73.9254073585,-73.95021527500001],"lat":[40.66215635269308,40.67647920996239,40.70512492450101,40.71944778177032,40.70512492450101,40.67647920996239,40.66215635269308]}]],[[{"lng":[-73.95021527500001,-73.9750231915,-73.9750231915,-73.95021527500001,-73.9254073585,-73.9254073585,-73.95021527500001],"lat":[40.74809349630894,40.76241635357825,40.79106206811686,40.80538492538617,40.79106206811686,40.76241635357825,40.74809349630894]}]],[[{"lng":[-73.95021527500001,-73.9750231915,-73.9750231915,-73.95021527500001,-73.9254073585,-73.9254073585,-73.95021527500001],"lat":[40.83403063992479,40.8483534971941,40.87699921173272,40.89132206900202,40.87699921173272,40.8483534971941,40.83403063992479]}]],[[{"lng":[-73.9254073585,-73.95021527500001,-73.95021527500001,-73.9254073585,-73.900599442,-73.900599442,-73.9254073585],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-73.9254073585,-73.95021527500001,-73.95021527500001,-73.9254073585,-73.900599442,-73.900599442,-73.9254073585],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.9254073585,-73.95021527500001,-73.95021527500001,-73.9254073585,-73.900599442,-73.900599442,-73.9254073585],"lat":[40.79106206811686,40.80538492538617,40.83403063992479,40.8483534971941,40.83403063992479,40.80538492538617,40.79106206811686]}]],[[{"lng":[-73.900599442,-73.9254073585,-73.9254073585,-73.900599442,-73.87579152550001,-73.87579152550001,-73.900599442],"lat":[40.57621920907723,40.59054206634654,40.61918778088516,40.63351063815447,40.61918778088516,40.59054206634654,40.57621920907723]}]],[[{"lng":[-73.900599442,-73.9254073585,-73.9254073585,-73.900599442,-73.87579152550001,-73.87579152550001,-73.900599442],"lat":[40.66215635269308,40.67647920996239,40.70512492450101,40.71944778177032,40.70512492450101,40.67647920996239,40.66215635269308]}]],[[{"lng":[-73.900599442,-73.9254073585,-73.9254073585,-73.900599442,-73.87579152550001,-73.87579152550001,-73.900599442],"lat":[40.74809349630894,40.76241635357825,40.79106206811686,40.80538492538617,40.79106206811686,40.76241635357825,40.74809349630894]}]],[[{"lng":[-73.900599442,-73.9254073585,-73.9254073585,-73.900599442,-73.87579152550001,-73.87579152550001,-73.900599442],"lat":[40.83403063992479,40.8483534971941,40.87699921173272,40.89132206900202,40.87699921173272,40.8483534971941,40.83403063992479]}]],[[{"lng":[-73.87579152550001,-73.900599442,-73.900599442,-73.87579152550001,-73.850983609,-73.850983609,-73.87579152550001],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-73.87579152550001,-73.900599442,-73.900599442,-73.87579152550001,-73.850983609,-73.850983609,-73.87579152550001],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.87579152550001,-73.900599442,-73.900599442,-73.87579152550001,-73.850983609,-73.850983609,-73.87579152550001],"lat":[40.79106206811686,40.80538492538617,40.83403063992479,40.8483534971941,40.83403063992479,40.80538492538617,40.79106206811686]}]],[[{"lng":[-73.87579152550001,-73.900599442,-73.900599442,-73.87579152550001,-73.850983609,-73.850983609,-73.87579152550001],"lat":[40.87699921173272,40.89132206900202,40.91996778354064,40.93429064080995,40.91996778354064,40.89132206900202,40.87699921173272]}]],[[{"lng":[-73.850983609,-73.87579152550001,-73.87579152550001,-73.850983609,-73.8261756925,-73.8261756925,-73.850983609],"lat":[40.66215635269308,40.67647920996239,40.70512492450101,40.71944778177032,40.70512492450101,40.67647920996239,40.66215635269308]}]],[[{"lng":[-73.850983609,-73.87579152550001,-73.87579152550001,-73.850983609,-73.8261756925,-73.8261756925,-73.850983609],"lat":[40.74809349630894,40.76241635357825,40.79106206811686,40.80538492538617,40.79106206811686,40.76241635357825,40.74809349630894]}]],[[{"lng":[-73.850983609,-73.87579152550001,-73.87579152550001,-73.850983609,-73.8261756925,-73.8261756925,-73.850983609],"lat":[40.83403063992479,40.8483534971941,40.87699921173272,40.89132206900202,40.87699921173272,40.8483534971941,40.83403063992479]}]],[[{"lng":[-73.8261756925,-73.850983609,-73.850983609,-73.8261756925,-73.80136777600001,-73.80136777600001,-73.8261756925],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-73.8261756925,-73.850983609,-73.850983609,-73.8261756925,-73.80136777600001,-73.80136777600001,-73.8261756925],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.8261756925,-73.850983609,-73.850983609,-73.8261756925,-73.80136777600001,-73.80136777600001,-73.8261756925],"lat":[40.79106206811686,40.80538492538617,40.83403063992479,40.8483534971941,40.83403063992479,40.80538492538617,40.79106206811686]}]],[[{"lng":[-73.80136777600001,-73.8261756925,-73.8261756925,-73.80136777600001,-73.7765598595,-73.7765598595,-73.80136777600001],"lat":[40.57621920907723,40.59054206634654,40.61918778088516,40.63351063815447,40.61918778088516,40.59054206634654,40.57621920907723]}]],[[{"lng":[-73.80136777600001,-73.8261756925,-73.8261756925,-73.80136777600001,-73.7765598595,-73.7765598595,-73.80136777600001],"lat":[40.66215635269308,40.67647920996239,40.70512492450101,40.71944778177032,40.70512492450101,40.67647920996239,40.66215635269308]}]],[[{"lng":[-73.80136777600001,-73.8261756925,-73.8261756925,-73.80136777600001,-73.7765598595,-73.7765598595,-73.80136777600001],"lat":[40.74809349630894,40.76241635357825,40.79106206811686,40.80538492538617,40.79106206811686,40.76241635357825,40.74809349630894]}]],[[{"lng":[-73.80136777600001,-73.8261756925,-73.8261756925,-73.80136777600001,-73.7765598595,-73.7765598595,-73.80136777600001],"lat":[40.83403063992479,40.8483534971941,40.87699921173272,40.89132206900202,40.87699921173272,40.8483534971941,40.83403063992479]}]],[[{"lng":[-73.7765598595,-73.80136777600001,-73.80136777600001,-73.7765598595,-73.751751943,-73.751751943,-73.7765598595],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-73.7765598595,-73.80136777600001,-73.80136777600001,-73.7765598595,-73.751751943,-73.751751943,-73.7765598595],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.751751943,-73.7765598595,-73.7765598595,-73.751751943,-73.72694402650001,-73.72694402650001,-73.751751943],"lat":[40.57621920907723,40.59054206634654,40.61918778088516,40.63351063815447,40.61918778088516,40.59054206634654,40.57621920907723]}]],[[{"lng":[-73.751751943,-73.7765598595,-73.7765598595,-73.751751943,-73.72694402650001,-73.72694402650001,-73.751751943],"lat":[40.66215635269308,40.67647920996239,40.70512492450101,40.71944778177032,40.70512492450101,40.67647920996239,40.66215635269308]}]],[[{"lng":[-73.72694402650001,-73.751751943,-73.751751943,-73.72694402650001,-73.70213611,-73.70213611,-73.72694402650001],"lat":[40.61918778088516,40.63351063815447,40.66215635269308,40.67647920996239,40.66215635269308,40.63351063815447,40.61918778088516]}]],[[{"lng":[-73.72694402650001,-73.751751943,-73.751751943,-73.72694402650001,-73.70213611,-73.70213611,-73.72694402650001],"lat":[40.70512492450101,40.71944778177032,40.74809349630894,40.76241635357825,40.74809349630894,40.71944778177032,40.70512492450101]}]],[[{"lng":[-73.70213611,-73.72694402650001,-73.72694402650001,-73.70213611,-73.6773281935,-73.6773281935,-73.70213611],"lat":[40.74809349630894,40.76241635357825,40.79106206811686,40.80538492538617,40.79106206811686,40.76241635357825,40.74809349630894]}]]],["X6","X11","X17","X21","X22","X42","X43","X47","X48","X49","X51","X52","X53","X54","X57","X58","X59","X60","X62","X63","X64","X67","X68","X69","X70","X72","X73","X74","X75","X78","X79","X80","X82","X83","X84","X87","X88","X89","X90","X92","X93","X97","X98","X102","X103","X109"],"nyc_honeycomb19",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":0.7,"opacity":1,"fill":true,"fillColor":["#FFF5F0","#FFF5F0","#FDCFBC","#FEE5DA","#FFF5F0","#FB795A","#FDCFBC","#FC9677","#FB795A","#FCB499","#FEE5DA","#B51218","#67000D","#FDCFBC","#B51218","#FB795A","#EA362A","#FFF5F0","#930A12","#FB795A","#930A12","#FEE5DA","#D01D1F","#FDCFBC","#FB795A","#FC9677","#67000D","#FCB499","#FCB499","#FDCFBC","#FFF5F0","#FDCFBC","#FFF5F0","#FCB499","#FCB499","#FEE5DA","#B51218","#FCB499","#FFF5F0","#FCB499","#FEE5DA","#FEE5DA","#FCB499","#FDCFBC","#FEE5DA","#FFF5F0"],"fillOpacity":[0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6,0.6],"dashArray":"none","smoothFactor":1,"noClip":false},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>6<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>11<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>17<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>21<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>22<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>42<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>6<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>43<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>47<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>48<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>6<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>49<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>51<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>52<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>10<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>53<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>12<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>54<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>57<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>10<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>58<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>6<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>59<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>8<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>60<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>62<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>11<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>63<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>6<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>64<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>11<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>67<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>68<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>9<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>69<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>70<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>6<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>72<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>73<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>12<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>74<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>75<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>78<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>79<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>80<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>82<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>83<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>84<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>87<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>88<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>10<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>89<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>90<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>92<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>93<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>97<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>98<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>4<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>102<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>3<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>103<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>2<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>109<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Number of collisions: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>"],null,["6","11","17","21","22","42","43","47","48","49","51","52","53","54","57","58","59","60","62","63","64","67","68","69","70","72","73","74","75","78","79","80","82","83","84","87","88","89","90","92","93","97","98","102","103","109"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#FEE5DA , #FEE5DA 0%, #FCB499 20%, #FB795A 40%, #EA362A 60%, #B51218 80%, #67000D 100%, #67000D "],"labels":["2","4","6","8","10","12"],"na_color":null,"na_label":null,"opacity":0.6,"position":"topright","type":"numeric","title":"Number of fatal collisions","extra":{"p_1":0,"p_n":1},"layerId":"legend401","className":"info legend nyc_honeycomb19","group":"nyc_honeycomb19"}]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"nyc_honeycomb19",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[40.49028206546138,40.93429064080995],"lng":[-74.22310235650001,-73.6773281935]},"fitBounds":[40.49028206546138,-74.22310235650001,40.93429064080995,-73.6773281935,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
+
+</div>
+</div>
+</div>
 
 
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{durrani2024,
-  author = {Durrani, Umair},
-  title = {Day 4: {Hexagons}},
-  date = {2024-11-04},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-durrani2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Durrani, Umair. 2024. <span>“Day 4: Hexagons.”</span> November 4, 2024.
-</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -722,8 +762,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-</div> <!-- /content -->
+<div id="quarto-appendix" class="default bslib-grid-item html-fill-item"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{durrani2024,
+  author = {Durrani, Umair},
+  title = {Day 4: {Hexagons}},
+  date = {2024-11-04},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-durrani2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Durrani, Umair. 2024. <span>“Day 4: Hexagons.”</span> November 4, 2024.
+</div></div></section></div></div> <!-- /content -->
 
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
 
 
 
