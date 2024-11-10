@@ -41,14 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-dashboard/quarto-dashboard.js"></script>
-<script src="../../site_libs/quarto-dashboard/stickythead.js"></script>
-<script src="../../site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
-<script src="../../site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
-<script src="../../site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
-<script src="../../site_libs/quarto-dashboard/web-components.js" type="module"></script>
-<script src="../../site_libs/quarto-dashboard/components.js"></script>
-<link href="../../site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
+<script src="../../site_libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
+<script src="../../site_libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
+<script src="../../site_libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,12 +71,14 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta cr-debug-mode="false">
+<meta cr-remove-header-space="true">
 
 
+<link rel="stylesheet" href="../../_extensions/qmd-lab/closeread/closeread.css">
 </head>
 
-<body class="quarto-dashboard floating nav-fixed dashboard-fill">
-
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -115,69 +112,120 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-<header id="quarto-dashboard-header">
-<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
-  <div class="navbar-container container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>    
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">Day 5: A Journey</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">journey</div>
+                <div class="quarto-category">mapgl</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page">
 
-
-    <div class="navbar-brand-container">       
-
-      <div class="navbar-title">
-        <div class="navbar-title-text"><a href="#">Day 5: A Journey</a></div>
-        
-        <div class="navbar-author">Umair Durrani</div>
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://umairdurrani.com/">Umair Durrani</a> </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 5, 2024</p>
       </div>
     </div>
-<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-around-the-world-in-eighty-days" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#around-the-world-in-eighty-days" data-scrolling="false" href="#around-the-world-in-eighty-days" aria-controls="around-the-world-in-eighty-days" aria-selected="true"><span class="nav-link-text">Around the World in Eighty Days</span></a></li></ul></div></div>
-</nav>
-</header></header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto bslib-grid-item html-fill-item">
     
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item bslib-grid-item html-fill-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+      <!-- user-provided yaml closeread style options -->
+      <style>
+        :root {
+          --cr-narrative-font-size: 1.25rem;
+--cr-narrative-sidebar-width: minmax(400px, 1fr);
+--cr-narrative-background-color-sidebar: #111111;
+--cr-narrative-background-color-overlay: #111111dd;
+--cr-section-background-color: white;
+--cr-narrative-text-color-sidebar: white;
+--cr-narrative-border-radius: 5px;
+        }
+      </style>
+    
 
-<div class="bslib-grid-item html-fill-item bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
-<div class="card bslib-card html-fill-container" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
-<div class="card-body html-fill-item html-fill-container">
-<div class="cr-section tab-content html-fill-item html-fill-container">
-<div id="around-the-world-in-eighty-days" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-around-the-world-in-eighty-days">
 
+
+
+
+<div class="cr-section cr-column-screen sidebar-left">
+<div class="narrative-col">
+<div class="trigger new-trigger" data-focus-on="cr-london">
+<section id="around-the-world-in-eighty-days" class="level1 narrative">
+<h1>Around the World in Eighty Days</h1>
+</section>
 </div>
+<div class="trigger">
+<div class="narrative">
 <p>Fogg accepts a £20,000 wager to travel around the world in 80 days. ‘The unforeseen does not exist.’</p>
-<img src="assets/image1.png" class="img-fluid">
-<div data-focus-on="cr-egypt" class="html-fill-item html-fill-container">
-<p>Detective Fix begins to pursue Fogg, suspecting him of bank robbery.</p>
-<img src="assets/image2.png" class="img-fluid">
 </div>
-<div data-focus-on="cr-india1" class="html-fill-item html-fill-container">
+</div>
+<div class="trigger">
+<div class="narrative">
+<p><img src="assets/image1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-egypt">
+<div class="narrative">
+<p>Detective Fix begins to pursue Fogg, suspecting him of bank robbery.</p>
+<p><img src="assets/image2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-india1">
+<div class="narrative">
 <p>Fogg and Passepartout encounter a disrupted railway line and arrange for an elephant to continue their journey. <img src="assets/image3.png" class="img-fluid"></p>
 </div>
-<div data-focus-on="cr-india2" class="html-fill-item html-fill-container">
+</div>
+<div class="trigger new-trigger" data-focus-on="cr-india2">
+<div class="narrative">
 <p>Fogg rescues Aouda, a widow who is to be sacrificed, saying, ‘I have yet twelve hours to save her!’ <img src="assets/image4.png" class="img-fluid"></p>
 </div>
-<div id="cr-london" class="html-fill-item html-fill-container">
+</div>
+</div>
+<div class="sticky-col">
+<div class="sticky-col-stack">
+<div id="cr-london" class="sticky">
 <iframe width="860" height="615" src="assets/video1.mp4" frameborder="0" allow="autoplay" autoplay="">
 </iframe>
 </div>
-<div id="cr-egypt" class="html-fill-item html-fill-container">
-<iframe width="860" height="615" src="assets/video2.mp4" frameborder="0" allow="autoplay" autoplay="">
+<div id="cr-egypt" class="sticky">
+<iframe width="860" height="615" src="assets/video2.mp4" frameborder="0">
 </iframe>
 </div>
-<div id="cr-india1" class="html-fill-item html-fill-container">
-<iframe width="860" height="615" src="assets/video3.mp4" frameborder="0" allow="autoplay" autoplay="">
+<div id="cr-india1" class="sticky">
+<iframe width="860" height="615" src="assets/video3.mp4" frameborder="0">
 </iframe>
 </div>
-<div id="cr-india2" class="html-fill-item html-fill-container">
-<iframe width="860" height="615" src="assets/video4.mp4" frameborder="0" allow="autoplay" autoplay="">
+<div id="cr-india2" class="sticky">
+<iframe width="860" height="615" src="assets/video4.mp4" frameborder="0">
 </iframe>
+</div>
+</div>
 </div>
 </div>
 <p><br>
@@ -185,21 +233,18 @@ ul.task-list li input[type="checkbox"] {
 <br>
 </p>
 <p>This is a proof of concept to make a quarto closeread document with videos and images.</p>
-</div>
-<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
-    <template>Expand</template>
-    <span class="bslib-full-screen-enter badge rounded-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
-    </span>
-</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 
 
-<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
 
-</div>
-</div>
-
-
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{durrani2024,
+  author = {Durrani, Umair},
+  title = {Day 5: {A} {Journey}},
+  date = {2024-11-05},
+  langid = {en}
+}
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-durrani2024" class="csl-entry quarto-appendix-citeas" role="listitem">
+Durrani, Umair. 2024. <span>“Day 5: A Journey.”</span> November 5, 2024.
+</div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -620,24 +665,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<div id="quarto-appendix" class="default bslib-grid-item html-fill-item"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{durrani2024,
-  author = {Durrani, Umair},
-  title = {Day 5: {A} {Journey}},
-  date = {2024-11-05},
-  langid = {en}
-}
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-durrani2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Durrani, Umair. 2024. <span>“Day 5: A Journey.”</span> November 5, 2024.
-</div></div></section></div></div> <!-- /content -->
+</div> <!-- /content -->
 
-<script type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (_event) {
-  if (window.bslib.Card) {
-    window.bslib.Card.initializeAllCards();
-  }
-}); 
-</script>
-  
 
 
 
