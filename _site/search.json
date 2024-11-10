@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "30 Day Map Challenge 2024",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nHealth Sites in Canada and Pakistan (Day 8: HDX)\n\n\n\n\n\n\nHDX\n\n\n\n\n\n\n\n\n\nNov 8, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Raster\n\n\n\n\n\n\nraster\n\n\nopenrouteservice\n\n\nfasterize\n\n\n\n\n\n\n\n\n\nNov 6, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: A Journey\n\n\n\n\n\n\njourney\n\n\nmapgl\n\n\n\n\n\n\n\n\n\nNov 5, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Hexagons\n\n\n\n\n\n\nhexagons\n\n\ncollisions\n\n\ntmap\n\n\n\n\n\n\n\n\n\nNov 4, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: Polygons\n\n\n\n\n\n\npolygons\n\n\n\n\n\n\n\n\n\nNov 3, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2: Lines\n\n\n\n\n\n\nlines\n\n\nshiny\n\n\n\n\n\n\n\n\n\nNov 2, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nDay 8: Humanitarian Data Exchange (HDX)\n\n\n\n\n\n\nHDX\n\n\n\n\n\n\n\n\n\nNov 8, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 7: Vintage style\n\n\n\n\n\n\nvintage\n\n\nHDX\n\n\n\n\n\n\n\n\n\nNov 7, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 6: Raster\n\n\n\n\n\n\nraster\n\n\nopenrouteservice\n\n\nfasterize\n\n\n\n\n\n\n\n\n\nNov 6, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 5: A Journey\n\n\n\n\n\n\njourney\n\n\nmapgl\n\n\n\n\n\n\n\n\n\nNov 5, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 4: Hexagons\n\n\n\n\n\n\nhexagons\n\n\ncollisions\n\n\ntmap\n\n\n\n\n\n\n\n\n\nNov 4, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 3: Polygons\n\n\n\n\n\n\npolygons\n\n\n\n\n\n\n\n\n\nNov 3, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 2: Lines\n\n\n\n\n\n\nlines\n\n\nshiny\n\n\n\n\n\n\n\n\n\nNov 2, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\n\n\n\n\n\n\nDay 1: Points\n\n\n\n\n\n\npoints\n\n\ncrashapi\n\n\ntigris\n\n\n\n\n\n\n\n\n\nNov 1, 2024\n\n\nUmair Durrani\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/day1/day1.html",
@@ -131,5 +131,47 @@
     "title": "Day 6: Raster",
     "section": "Map",
     "text": "Map\n\npal_tor &lt;- colorNumeric(\"viridis\", cycling_ams_cropped_tor_proj$mins, na.color = \"transparent\")\npal_lhr &lt;- colorNumeric(\"viridis\", cycling_ams_cropped_lhr_proj$mins, na.color = \"transparent\")\n\nleaflet::leaflet() |&gt;\n  leaflet::addProviderTiles(\n    \"CartoDB.Positron\"\n  ) |&gt;\n  addRasterImage(iso_surface_tor, colors = pal_tor, opacity = 0.5) |&gt; \n  addLegend(\n    values = sort(as.numeric(as.character(cycling_ams_cropped_tor$mins))), \n    pal = pal_tor,\n    title = \"Cycling time in Toronto\"\n  )\n\n\n\n\nleaflet::leaflet() |&gt;\n  leaflet::addProviderTiles(\n    \"CartoDB.Positron\"\n  ) |&gt;\n  addRasterImage(iso_surface_lhr, colors = pal_lhr, opacity = 0.5) |&gt; \n  addLegend(\n    values = cycling_ams_cropped_lhr$mins, \n    pal = pal_lhr,\n    title = \"Cycling time in Lahore\"\n  )"
+  },
+  {
+    "objectID": "posts/day7/day7.html",
+    "href": "posts/day7/day7.html",
+    "title": "Day 7: Vintage style",
+    "section": "",
+    "text": "library(ggplot2)\nlibrary(sf) \nlibrary(grid)\nlibrary(showtext)\nfont_add_google(name = \"Yesteryear\", family = \"Yesteryear\")\nshowtext_auto()"
+  },
+  {
+    "objectID": "posts/day7/day7.html#data",
+    "href": "posts/day7/day7.html#data",
+    "title": "Day 7: Vintage style",
+    "section": "Data",
+    "text": "Data\nThen I added the health site locations on the map by using the data from Humanitarian Data Exchange (HDX) website:\n\ncan_health &lt;- sf::st_read(here::here(\"posts/day7/data/canada.geojson\"), \n                          quiet = TRUE) |&gt; \n    dplyr::filter(st_geometry_type(geometry) == \"POINT\")\n\non_health &lt;- can_health |&gt;\n  st_crop(xmin = ontario_bbox[1], xmax = ontario_bbox[2], \n          ymin = ontario_bbox[3], ymax = ontario_bbox[4])"
+  },
+  {
+    "objectID": "posts/day7/day7.html#ontario-health-sites",
+    "href": "posts/day7/day7.html#ontario-health-sites",
+    "title": "Day 7: Vintage style",
+    "section": "Ontario Health Sites",
+    "text": "Ontario Health Sites\nOntario health sites map with a custom font for the title:\n\nvo_hs &lt;- vintage_ontario +\n  geom_sf(data = on_health, aes(geometry = geometry), \n          color = \"#8B4513\",  \n          size = 2,           \n          alpha = 0.7) +      \n  coord_sf(xlim = c(ontario_bbox[1], ontario_bbox[2]),\n          ylim = c(ontario_bbox[3], ontario_bbox[4]))\n\n\nadd_vintage_title &lt;- function(map, title, subtitle = NULL) {\n  map + \n    labs(title = title, subtitle = subtitle) +\n    theme(\n      plot.title = element_text(\n        family = \"Yesteryear\",\n        size = 25,\n        color = \"#8B4513\",\n        face = \"bold\",\n        hjust = 0.5\n      ),\n      plot.subtitle = element_text(\n        family = \"Yesteryear\",\n        size = 16,\n        color = \"#8B4513\",\n        hjust = 0.5\n      )\n    )\n}\n\nvo_hs |&gt; add_vintage_title(title = \"Health Sites in Ontario\")"
+  },
+  {
+    "objectID": "posts/day8/day8.html",
+    "href": "posts/day8/day8.html",
+    "title": "Day 8: Humanitarian Data Exchange (HDX)",
+    "section": "",
+    "text": "I used the health sites data for Canada and Pakistan from the Humanitarian Data Exchange (HDX) website."
+  },
+  {
+    "objectID": "posts/day8/day8.html#data",
+    "href": "posts/day8/day8.html#data",
+    "title": "Day 8: Humanitarian Data Exchange (HDX)",
+    "section": "",
+    "text": "I used the health sites data for Canada and Pakistan from the Humanitarian Data Exchange (HDX) website."
+  },
+  {
+    "objectID": "posts/day8/day8.html#dashboard",
+    "href": "posts/day8/day8.html#dashboard",
+    "title": "Day 8: Humanitarian Data Exchange (HDX)",
+    "section": "Dashboard",
+    "text": "Dashboard\nThe following dashboard shows the health sites in an interactive map. Click on a country’s name to reveal the contents:\n\n\n\n\nThe source code for the dashboard is available here."
   }
 ]

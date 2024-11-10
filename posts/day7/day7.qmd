@@ -1,0 +1,139 @@
+---
+title: "Day 7: Vintage style"
+date: "2024-11-07"
+categories: [vintage, HDX]
+image: image.png
+cache: true
+---
+
+```{r}
+library(ggplot2)
+library(sf) 
+library(grid)
+library(showtext)
+font_add_google(name = "Yesteryear", family = "Yesteryear")
+showtext_auto()
+```
+
+# Creating vintage style
+
+I used `ggplot2::map_data` to get world map and `ggplot2::geom_map` for creating the map in this function:
+
+```{r}
+create_vintage_map <- function(region = "world", 
+                               bbox = NULL,
+                               paper_color = "#F5E6CE",
+                               water_color = "#B9D3C2",
+                               land_color = "#DEB887",
+                               border_color = "#8B4513",
+                               grid_color = "#8B451366") {
+  
+  # Get map data
+  world_map <- map_data(region)
+  
+  # Create base map
+  p <- ggplot() +
+    # Add water background
+    geom_rect(aes(xmin = -180, xmax = 180, ymin = -90, ymax = 90),
+              fill = water_color) +
+    # Add land
+    geom_map(data = world_map, map = world_map,
+             aes(map_id = region),
+             fill = land_color, color = border_color, linewidth = 0.2) +
+    # Add gridlines
+    geom_hline(yintercept = seq(-90, 90, by = 15), 
+               color = grid_color, linewidth = 0.2, linetype = "dashed") +
+    geom_vline(xintercept = seq(-180, 180, by = 15),
+               color = grid_color, linewidth = 0.2, linetype = "dashed")
+  
+  # Add vintage styling
+  p <- p + theme(
+    panel.background = element_rect(fill = paper_color),
+    panel.grid = element_blank(),
+    axis.text = element_text(family = "serif", color = "#8B4513"),
+    axis.title = element_text(family = "serif", color = "#8B4513"),
+    plot.background = element_rect(fill = paper_color),
+    panel.border = element_rect(color = "#8B4513", fill = NA, linewidth = 1)
+  ) 
+  
+  # Add aging effect
+  p <- p + annotate("rect", xmin = -180, xmax = 180, ymin = -90, ymax = 90,
+                    fill = "#8B4513", alpha = 0.1)
+  
+  # If bbox is provided, zoom to that area
+  if (!is.null(bbox)) {
+    p <- p + coord_cartesian(xlim = c(bbox[1], bbox[2]),
+                             ylim = c(bbox[3], bbox[4]))
+  } else {
+    p <- p + coord_fixed(1.3)
+  }
+  
+  return(p)
+}
+```
+
+
+### Base map for Ontario
+
+Using the bbox for Ontario:
+
+```{r}
+ontario_bbox <- c(-95.16, -74.34, 41.66, 56.86) # xmin, xmax, ymin, ymax
+vintage_ontario <- create_vintage_map(region = "world", bbox = ontario_bbox)
+vintage_ontario
+```
+
+
+## Data
+
+Then I added the health site locations on the map by using the data from [Humanitarian Data Exchange (HDX) website](https://data.humdata.org/dataset/canada-healthsites): 
+
+```{r}
+can_health <- sf::st_read(here::here("posts/day7/data/canada.geojson"), 
+                          quiet = TRUE) |> 
+    dplyr::filter(st_geometry_type(geometry) == "POINT")
+
+on_health <- can_health |>
+  st_crop(xmin = ontario_bbox[1], xmax = ontario_bbox[2], 
+          ymin = ontario_bbox[3], ymax = ontario_bbox[4])
+```
+
+## Ontario Health Sites
+
+Ontario health sites map with a custom font for the title:
+
+```{r}
+vo_hs <- vintage_ontario +
+  geom_sf(data = on_health, aes(geometry = geometry), 
+          color = "#8B4513",  
+          size = 2,           
+          alpha = 0.7) +      
+  coord_sf(xlim = c(ontario_bbox[1], ontario_bbox[2]),
+          ylim = c(ontario_bbox[3], ontario_bbox[4]))
+```
+
+
+```{r}
+add_vintage_title <- function(map, title, subtitle = NULL) {
+  map + 
+    labs(title = title, subtitle = subtitle) +
+    theme(
+      plot.title = element_text(
+        family = "Yesteryear",
+        size = 25,
+        color = "#8B4513",
+        face = "bold",
+        hjust = 0.5
+      ),
+      plot.subtitle = element_text(
+        family = "Yesteryear",
+        size = 16,
+        color = "#8B4513",
+        hjust = 0.5
+      )
+    )
+}
+
+vo_hs |> add_vintage_title(title = "Health Sites in Ontario")
+```
+
