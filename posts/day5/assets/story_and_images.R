@@ -1,7 +1,7 @@
 library(tidyverse)
 
 # Getting images from stable diffusion-----------------------------
-# source(here::here("posts/day5/assets/req_single_image.R"))
+# source(here::here("req_single_image.R"))
 
 journey <- tibble(
   location = c(

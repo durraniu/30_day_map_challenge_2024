@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Umair Durrani">
-<meta name="dcterms.date" content="2024-11-05">
+<meta name="dcterms.date" content="2024-11-09">
 
-<title>Day 5: A Journey – Home</title>
+<title>Day 9: AI only – Home</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,9 +75,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../../site_libs/quarto-contrib/intersection-observer-polyfill-1.0.0/intersection-observer.js"></script>
-<script src="../../site_libs/quarto-contrib/scrollama-3.2.0/scrollama.min.js"></script>
-<script src="../../site_libs/quarto-contrib/closeread-0.1.0/closeread.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,11 +102,13 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<meta cr-debug-mode="false">
-<meta cr-remove-header-space="true">
+<link href="../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+
+<script src="../../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
-<link rel="stylesheet" href="../../_extensions/qmd-lab/closeread/closeread.css">
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="floating nav-fixed">
@@ -116,17 +149,17 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Day 5: A Journey</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Day 9: AI only</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">journey</div>
-                <div class="quarto-category">mapgl</div>
+                <div class="quarto-category">AI</div>
+                <div class="quarto-category">httr2</div>
               </div>
                   </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page">
+  <div class="quarto-title-meta">
 
       <div>
       <div class="quarto-title-meta-heading">Author</div>
@@ -138,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 5, 2024</p>
+        <p class="date">November 9, 2024</p>
       </div>
     </div>
     
@@ -146,104 +179,186 @@ ul.task-list li input[type="checkbox"] {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#using-ai-to-create-a-map" id="toc-using-ai-to-create-a-map" class="nav-link active" data-scroll-target="#using-ai-to-create-a-map">Using AI to create a map</a>
+  <ul class="collapse">
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#requesting-a-map-image-from-stable-diffusion" id="toc-requesting-a-map-image-from-stable-diffusion" class="nav-link" data-scroll-target="#requesting-a-map-image-from-stable-diffusion">Requesting a map (image) from Stable Diffusion</a></li>
+  </ul></li>
+  <li><a href="#get-the-actual-map" id="toc-get-the-actual-map" class="nav-link" data-scroll-target="#get-the-actual-map">Get the actual map</a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map">Map</a>
+  <ul class="collapse">
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
-      <!-- user-provided yaml closeread style options -->
-      <style>
-        :root {
-          --cr-section-background-color: white;
---cr-narrative-text-color-sidebar: white;
---cr-narrative-background-color-sidebar: #111111;
---cr-narrative-background-color-overlay: #111111dd;
---cr-narrative-font-size: 1.25rem;
---cr-narrative-border-radius: 5px;
---cr-narrative-sidebar-width: minmax(400px, 1fr);
-        }
-      </style>
-    
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div class="cr-section cr-column-screen sidebar-left">
-<div class="narrative-col">
-<div class="trigger new-trigger" data-focus-on="cr-london">
-<section id="around-the-world-in-eighty-days" class="level1 narrative">
-<h1>Around the World in Eighty Days</h1>
+<section id="using-ai-to-create-a-map" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-to-create-a-map">Using AI to create a map</h2>
+<p>I used the <a href="https://developers.cloudflare.com/workers-ai/models/stable-diffusion-xl-base-1.0/">Cloudflare Workers AI API</a> to use a Stable Diffusion model for generating a map.</p>
+<p>To use their REST API, I loaded the <code>httr2</code> package and others:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(osmdata)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions">Functions</h3>
+<p>The following function creates a request object to request an image from the model by providing a prompt and drawing instructions. You need an <code>ACCOUNT_ID</code> and an <code>API_KEY</code> from Cloudflare Workers AI to use this service.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>req_single_image <span class="ot">&lt;-</span> <span class="cf">function</span>(prompt,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                             instructions,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ACCOUNT_ID =</span> <span class="fu">Sys.getenv</span>(<span class="st">"ACCOUNT_ID"</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">API_KEY =</span> <span class="fu">Sys.getenv</span>(<span class="st">"API_KEY"</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">base_url =</span> <span class="st">"https://api.cloudflare.com/client/v4/accounts/"</span>){</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  url_img <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://api.cloudflare.com/client/v4/accounts/"</span>, ACCOUNT_ID, </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># "/ai/run/@cf/bytedance/stable-diffusion-xl-lightning"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create the request</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  httr2<span class="sc">::</span><span class="fu">request</span>(url_img) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_headers</span>(</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Authorization"</span> <span class="ot">=</span> <span class="fu">paste</span>(<span class="st">"Bearer"</span>, API_KEY)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_body_json</span>(<span class="fu">list</span>(<span class="at">prompt =</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      prompt, <span class="st">" "</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      instructions</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    ))) <span class="sc">|&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    httr2<span class="sc">::</span><span class="fu">req_method</span>(<span class="st">"POST"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After creating and performing a request, I needed to check if the request was successful. If it were, I could extract the image as raw binary object using this function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>get_image <span class="ot">&lt;-</span> <span class="cf">function</span>(response){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (response<span class="sc">$</span>status_code <span class="sc">==</span> <span class="dv">200</span>){</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    png_img <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">resp_body_raw</span>(response)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    png_img <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  png_img</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
+<section id="requesting-a-map-image-from-stable-diffusion" class="level3">
+<h3 class="anchored" data-anchor-id="requesting-a-map-image-from-stable-diffusion">Requesting a map (image) from Stable Diffusion</h3>
+<p>In the following code chunk, I asked the AI to:</p>
+<blockquote class="blockquote">
+<p>“Create a map of primary and secondary roads in Lahore, Pakistan”</p>
+</blockquote>
+<p>I also provided these drawing instructions:</p>
+<blockquote class="blockquote">
+<p>“Create this map in OpenStreetMap style”</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>drawing_instructions <span class="ot">&lt;-</span> <span class="st">"Create this map in OpenStreetMap style"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>request <span class="ot">&lt;-</span> <span class="fu">req_single_image</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Create a map of primary and secondary roads in Lahore, Pakistan"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  drawing_instructions</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> request <span class="sc">|&gt;</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  httr2<span class="sc">::</span><span class="fu">req_perform</span>()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>raw_image <span class="ot">&lt;-</span> <span class="fu">get_image</span>(response)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>magick<span class="sc">::</span><span class="fu">image_write</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  magick<span class="sc">::</span><span class="fu">image_read</span>(raw_image),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"posts/day9/map.png"</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="trigger">
-<div class="narrative">
-<p>Fogg accepts a £20,000 wager to travel around the world in 80 days. ‘The unforeseen does not exist.’</p>
+</section>
+</section>
+<section id="get-the-actual-map" class="level2">
+<h2 class="anchored" data-anchor-id="get-the-actual-map">Get the actual map</h2>
+<p>For comparison, I also got the actual roads from open street map service via <code>osmdata</code> package and then plotted it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lhr_bbox <span class="ot">&lt;-</span> osmdata<span class="sc">::</span><span class="fu">getbb</span>(<span class="st">"Lahore, Pakistan"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lhr_roads <span class="ot">&lt;-</span> (<span class="fu">opq</span> (<span class="at">bbox =</span> lhr_bbox) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_osm_feature</span> (<span class="at">key =</span> <span class="st">"highway"</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="st">"primary"</span>, <span class="st">"secondary"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">osmdata_sf</span> ())<span class="sc">$</span>osm_lines</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>lhr_roads_map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lhr_roads) <span class="sc">+</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"posts/day9/roads.png"</span>), lhr_roads_map, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">units =</span> <span class="st">"in"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="map" class="level2">
+<h2 class="anchored" data-anchor-id="map">Map</h2>
+<p>And here’s the side by side result:</p>
+<div id="fig-roads" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-roads-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-roads" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-ai" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="map.png" class="img-fluid figure-img" data-ref-parent="fig-roads">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-ai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) AI
+</figcaption>
+</figure>
 </div>
 </div>
-<div class="trigger">
-<div class="narrative">
-<p><img src="assets/image1.png" class="img-fluid"></p>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-roads" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-actual" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-actual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="roads.png" class="img-fluid figure-img" data-ref-parent="fig-roads">
 </div>
-</div>
-<div class="trigger new-trigger" data-focus-on="cr-egypt">
-<div class="narrative">
-<p>Detective Fix begins to pursue Fogg, suspecting him of bank robbery.</p>
-<p><img src="assets/image2.png" class="img-fluid"></p>
-</div>
-</div>
-<div class="trigger new-trigger" data-focus-on="cr-india1">
-<div class="narrative">
-<p>Fogg and Passepartout encounter a disrupted railway line and arrange for an elephant to continue their journey. <img src="assets/image3.png" class="img-fluid"></p>
-</div>
-</div>
-<div class="trigger new-trigger" data-focus-on="cr-india2">
-<div class="narrative">
-<p>Fogg rescues Aouda, a widow who is to be sacrificed, saying, ‘I have yet twelve hours to save her!’ <img src="assets/image4.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<div class="sticky-col">
-<div class="sticky-col-stack">
-<div id="cr-london" class="sticky">
-<iframe width="860" height="615" src="assets/video1.mp4" frameborder="0" allow="autoplay" autoplay="">
-</iframe>
-</div>
-<div id="cr-egypt" class="sticky">
-<iframe width="860" height="615" src="assets/video2.mp4" frameborder="0">
-</iframe>
-</div>
-<div id="cr-india1" class="sticky">
-<iframe width="860" height="615" src="assets/video3.mp4" frameborder="0">
-</iframe>
-</div>
-<div id="cr-india2" class="sticky">
-<iframe width="860" height="615" src="assets/video4.mp4" frameborder="0">
-</iframe>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-actual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Actual
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 </div>
-<p><br>
-<br>
-<br>
-</p>
-<p>This is a proof of concept to make a quarto closeread document with videos and images.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-roads-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Primary and Secondary Roads in Lahore, Pakistan
+</figcaption>
+</figure>
+</div>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>AI-generated map is obviously incorrect, but it captures the circular road network that Lahore has.</p>
 
 
+</section>
+</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></div></div></section><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{durrani2024,
   author = {Durrani, Umair},
-  title = {Day 5: {A} {Journey}},
-  date = {2024-11-05},
+  title = {Day 9: {AI} Only},
+  date = {2024-11-09},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-durrani2024" class="csl-entry quarto-appendix-citeas" role="listitem">
-Durrani, Umair. 2024. <span>“Day 5: A Journey.”</span> November 5, 2024.
+Durrani, Umair. 2024. <span>“Day 9: AI Only.”</span> November 9, 2024.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,0 +1,128 @@
+---
+title: "Day 9: AI only"
+date: "2024-11-09"
+categories: [AI, httr2]
+image: map.png
+---
+
+## Using AI to create a map
+
+I used the [Cloudflare Workers AI API](https://developers.cloudflare.com/workers-ai/models/stable-diffusion-xl-base-1.0/) to use a Stable Diffusion model for generating a map.
+
+To use their REST API, I loaded the `httr2` package and others:
+
+```{r}
+library(httr2)
+library(magick)
+library(osmdata)
+library(ggplot2)
+```
+
+### Functions
+
+The following function creates a request object to request an image from the model by providing a prompt and drawing instructions. You need an `ACCOUNT_ID` and an `API_KEY` from Cloudflare Workers AI to use this service.
+
+```{r}
+req_single_image <- function(prompt,
+                             instructions,
+                             ACCOUNT_ID = Sys.getenv("ACCOUNT_ID"),
+                             API_KEY = Sys.getenv("API_KEY"),
+                             base_url = "https://api.cloudflare.com/client/v4/accounts/"){
+
+  url_img <- paste0(
+    "https://api.cloudflare.com/client/v4/accounts/", ACCOUNT_ID, 
+    # "/ai/run/@cf/bytedance/stable-diffusion-xl-lightning"
+    "/ai/run/@cf/stabilityai/stable-diffusion-xl-base-1.0"
+  )
+
+  # Create the request
+  httr2::request(url_img) |>
+    httr2::req_headers(
+      "Authorization" = paste("Bearer", API_KEY)
+    ) |>
+    httr2::req_body_json(list(prompt = paste0(
+      prompt, " ",
+      instructions
+    ))) |>
+    httr2::req_method("POST")
+}
+```
+
+After creating and performing a request, I needed to check if the request was successful. If it were, I could extract the image as raw binary object using this function:
+
+```{r}
+get_image <- function(response){
+  if (response$status_code == 200){
+    png_img <- httr2::resp_body_raw(response)
+  } else{
+    png_img <- NULL
+  }
+  png_img
+}
+```
+
+### Requesting a map (image) from Stable Diffusion
+
+In the following code chunk, I asked the AI to: 
+
+> "Create a map of primary and secondary roads in Lahore, Pakistan"  
+
+I also provided these drawing instructions:  
+
+> "Create this map in OpenStreetMap style"
+
+```{r}
+#| eval: false
+drawing_instructions <- "Create this map in OpenStreetMap style"
+
+request <- req_single_image(
+  "Create a map of primary and secondary roads in Lahore, Pakistan", 
+  drawing_instructions
+  )
+
+response <- request |> 
+  httr2::req_perform()
+
+raw_image <- get_image(response)
+
+magick::image_write(
+  magick::image_read(raw_image),
+  path = here::here("posts/day9/map.png")
+  )
+```
+
+
+## Get the actual map
+
+For comparison, I also got the actual roads from open street map service via `osmdata` package and then plotted it:
+
+```{r}
+#| eval: false
+lhr_bbox <- osmdata::getbb("Lahore, Pakistan")
+lhr_roads <- (opq (bbox = lhr_bbox) |> 
+    add_osm_feature (key = "highway", value = c("primary", "secondary")) |> 
+  osmdata_sf ())$osm_lines
+
+lhr_roads_map <- ggplot(lhr_roads) + 
+  geom_sf()
+
+ggsave(filename = here::here("posts/day9/roads.png"), lhr_roads_map, width = 5, height = 5, units = "in")
+```
+
+
+## Map
+
+And here's the side by side result: 
+
+::: {#fig-roads layout-ncol=2}
+
+![AI](map.png){#fig-ai}
+
+![Actual](roads.png){#fig-actual}
+
+Primary and Secondary Roads in Lahore, Pakistan
+:::
+
+### Conclusion
+
+AI-generated map is obviously incorrect, but it captures the circular road network that Lahore has.
